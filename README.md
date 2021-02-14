@@ -12,7 +12,7 @@ Things you may want to cover:
 * Configuration
 
 * Database creation
-
+![Database Schema](https://github.com/SK-Sam/rails_engine/blob/main/images/Rails%20Engine.png)
 * Database initialization
 
 * How to run the test suite
