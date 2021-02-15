@@ -8,8 +8,11 @@ RSpec.describe 'Merchants', type: :request do
       }
       # get "/api/v1/merchants/#{merchant.id}"
       get api_v1_merchant_path(merchant.id)
+
       expect(response.status).to eq(200)
+
       json = JSON.parse(response.body, symbolize_names: true)
+      
       expect(json[:data][:id]).to eq(merchant.id.to_s)
       # expect that every attribute we want up above shows up in our output
       expected_attributes.each do |attribute, value|
