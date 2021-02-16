@@ -26,6 +26,10 @@ RSpec.describe Merchant do
       default_args = Merchant.handle_pagination
 
       expect(default_args.count).to eq(20)
+
+      over_limit_twenty = Merchant.handle_pagination(21)
+
+      expect(over_limit_twenty.count).to eq(20)
     end
   end
 end
