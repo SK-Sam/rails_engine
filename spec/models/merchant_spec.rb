@@ -30,6 +30,10 @@ RSpec.describe Merchant do
       over_limit_twenty = Merchant.handle_pagination(21)
 
       expect(over_limit_twenty.count).to eq(20)
+
+      nil_handling = Merchant.handle_pagination(nil, nil)
+
+      expect(nil_handling.count).to eq(20)
     end
   end
 end
