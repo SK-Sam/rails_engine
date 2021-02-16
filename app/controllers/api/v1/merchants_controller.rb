@@ -1,7 +1,7 @@
 class Api::V1::MerchantsController < ApplicationController
 
   def index
-    @merchants = Merchant.all.limit(20)
+    @merchants = Merchant.handle_pagination(params[:per_page].to_i, params[:page].to_i)
     render json: MerchantSerializer.new(@merchants)
   end
 
