@@ -1,4 +1,5 @@
 require 'rails_helper'
+
 RSpec.describe 'Merchants', type: :request do
   describe 'fetching a single merchant' do
     it 'succeeds when there is something to fetch' do
@@ -52,5 +53,4 @@ RSpec.describe 'Merchants', type: :request do
       expect(json[:data].count).to eq(1)
     end
   end
-  # from here you can add other tests like "get all merchants" etc
 end
