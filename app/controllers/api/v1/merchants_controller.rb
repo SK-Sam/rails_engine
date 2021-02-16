@@ -1,5 +1,9 @@
 class Api::V1::MerchantsController < ApplicationController
 
+  def index
+
+  end
+
   def show
     if !Merchant.exists?(params[:id])
       render json: {
