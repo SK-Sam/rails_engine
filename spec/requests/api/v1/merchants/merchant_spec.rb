@@ -41,6 +41,16 @@ RSpec.describe 'Merchants', type: :request do
       expect(json[:data].class).to eq(Array)
       expect(json[:data].last.class).to eq(Hash)
     end
+    it 'can fetch merchants based on pages' do
+      merchant_list = create_list(:merchant, 21)
+      get '/api/v1/merchants?per_page=20&page=2'
+      
+      expect(response.status).to eq(200)
+
+      json = JSON.parse(response.body, symbolize_names: true)
+
+      expect(json[:data].count).to eq(1)
+    end
   end
   # from here you can add other tests like "get all merchants" etc
 end
