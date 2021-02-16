@@ -28,5 +28,17 @@ RSpec.describe 'Merchants', type: :request do
       # expect(json[:error]).to eq('resource could not be found')
     end
   end
+  describe 'fetching all merchants' do
+    it 'can fetch at most 20 merchants at a time' do
+      merchant_list = create_list(:merchant, 21)
+      get api_v1_merchants_path
+      
+      expect(response.status).to eq(200)
+
+      json = JSON.parse(response.body, symbolize_names: true)
+
+      expect(json[:data].count).to eq(20)
+    end
+  end
   # from here you can add other tests like "get all merchants" etc
 end
