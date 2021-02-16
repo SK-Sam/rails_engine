@@ -38,6 +38,8 @@ RSpec.describe 'Merchants', type: :request do
       json = JSON.parse(response.body, symbolize_names: true)
 
       expect(json[:data].count).to eq(20)
+      expect(json[:data].class).to eq(Array)
+      expect(json[:data].last.class).to eq(Hash)
     end
   end
   # from here you can add other tests like "get all merchants" etc
