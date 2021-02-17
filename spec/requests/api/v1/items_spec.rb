@@ -80,7 +80,7 @@ RSpec.describe 'Items', type: :request do
       previous_item_name = item.name
       updated_name = "Updated Name" 
 
-      patch update_api_v1_item_path(item.id), headers: headers, params: JSON.generate(item: {name: updated_name})
+      patch api_v1_item_path(item.id), headers: headers, params: JSON.generate(item: {name: updated_name})
       updated_item = Item.find(item.id)
 
       expect(response).to be_successful
