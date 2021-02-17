@@ -72,4 +72,20 @@ RSpec.describe 'Items', type: :request do
       expect(created_item.merchant_id).to eq(item_params[:merchant_id])
     end
   end
+  describe 'patching an item' do
+    it 'succeeds when proper attributes are given' do
+      merchant = create(:merchant)
+      item = create(:item, merchant: merchant)
+      headers = {"CONTENT_TYPE" => "application/json"}
+      previous_item_name = item.name
+      updated_name = "Updated Name" 
+
+      patch update_api_v1_item_path(item.id), headers: headers, params: JSON.generate(item: {name: updated_name})
+      updated_item = Item.find(item.id)
+
+      expect(response).to be_successful
+      expect(updated_item.name).not_to eq(previous_item_name)
+      expect(updated_item.name).to eq(updated_name)
+    end
+  end
 end
