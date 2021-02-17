@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe 'Merchants', type: :request do
+RSpec.describe 'Merchant Items', type: :request do
   describe 'fetching items a merchant owns' do
-    it 'can fetch at most 20 items at a time' do
+    it 'can fetch all Merchant items' do
       merchant = create(:merchant)
       item_list = create_list(:item, 22, merchant: merchant)
 
@@ -28,8 +28,6 @@ RSpec.describe 'Merchants', type: :request do
       expect(json[:data].first[:description]).to eq(expected_object[:description])
       expect(json[:data].first[:unit_price]).to eq(expected_object[:unit_price])
       expect(json[:data].first[:merchant_id]).to eq(expected_object[:merchant_id])
-
-
     end
   end
 end
