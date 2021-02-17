@@ -11,14 +11,14 @@ class Api::V1::ItemsController < ApplicationController
 
   def create
     merchant = Merchant.find(params[:item][:merchant_id])
-    @item = Item.new(
-      name: params[:item][:name],
-      description: params[:item][:description],
-      unit_price: params[:item][:unit_price],
-      name: params[:item][:name],
-      merchant_id: merchant.id
-    )
+    @item = Item.new(book_params)
     @item.save
+  end
+
+  private
+
+  def book_params
+    params.require(:item).permit(:name, :description, :unit_price, :merchant_id)
   end
 
 end
