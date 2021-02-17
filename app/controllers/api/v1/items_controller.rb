@@ -12,7 +12,7 @@ class Api::V1::ItemsController < ApplicationController
   def create
     merchant = Merchant.find(params[:item][:merchant_id])
     @item = Item.new(book_params)
-    @item.save
+    render json: @item.save
   end
 
   private
