@@ -10,15 +10,20 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def create
-    merchant = Merchant.find(params[:item][:merchant_id])
-    @item = Item.new(book_params)
+    @item = Item.new(item_params)
     @item.save
     render json: ItemSerializer.new(@item), status: :created
   end
 
+  def update
+    @item = Item.find(params[:id])
+    @item.update(item_params)
+    render json: ItemSerializer.new(@item)#, status: :update
+  end
+
   private
 
-  def book_params
+  def item_params
     params.require(:item).permit(:name, :description, :unit_price, :merchant_id)
   end
 
