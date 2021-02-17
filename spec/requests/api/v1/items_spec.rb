@@ -41,10 +41,11 @@ RSpec.describe 'Items', type: :request do
 
       json = JSON.parse(response.body, symbolize_names: true)
 
-      expect(json[:data][:id]).to eq(merchant.id.to_s)
+      expect(json[:data][:id]).to eq(item.id.to_s)
       # expect that every attribute we want up above shows up in our output
       expected_attributes.each do |attribute, value|
         expect(json[:data][:attributes][attribute]).to eq(value)
       end
     end
+  end
 end
