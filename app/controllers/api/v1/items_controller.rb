@@ -21,6 +21,11 @@ class Api::V1::ItemsController < ApplicationController
     render json: ItemSerializer.new(@item)#, status: :update
   end
 
+  def destroy
+    @item = Item.find(params[:id])
+    @item.destroy
+  end
+
   private
 
   def item_params
