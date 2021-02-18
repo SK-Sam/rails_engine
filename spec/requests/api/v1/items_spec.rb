@@ -100,4 +100,22 @@ RSpec.describe 'Items', type: :request do
       expect(Item.exists?(item.id)).to eq(false)
     end
   end
+  describe 'fetching the merchant of the item' do
+    it 'succeeds when getting the merchant who owns the item' do
+      merchant = create(:merchant)
+      item = create(:item, merchant: merchant)
+      expected_attributes = {
+        name: merchant.name
+      }
+      
+      get api_v1_item_merchant_index_path(item.id)
+      json = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response.status).to eq(200)
+      expect(response).to be_successful
+      expected_attributes.each do |attribute, value|
+        expect(json[:data][:attributes][attribute]).to eq(value)
+      end
+    end
+  end
 end
