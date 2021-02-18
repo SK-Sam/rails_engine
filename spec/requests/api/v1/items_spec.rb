@@ -88,4 +88,16 @@ RSpec.describe 'Items', type: :request do
       expect(updated_item.name).to eq(updated_name)
     end
   end
+  describe 'destroying an item' do
+    it 'succeeds and destroys invoice if it is the only item on invoice' do
+      merchant = create(:merchant)
+      item = create(:item, merchant: merchant)
+      
+      delete api_v1_item_path(item.id)
+
+      expect(response.status).to eq(204)
+      expect(response).to be_successful
+      expect(Item.exists?(item.id)).to eq(false)
+    end
+  end
 end
