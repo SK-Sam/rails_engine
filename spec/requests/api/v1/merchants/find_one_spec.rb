@@ -20,5 +20,23 @@ RSpec.describe 'Find One', type: :request do
         expect(json[:data][:attributes][attribute]).to eq(value)
       end
     end
+    it 'can fetch a specific merchant based on name case insensitive' do
+      incorrect_merchant = create(:merchant, name: "Turing")
+      correct_merchant = create(:merchant, name: "Ring World")
+
+      expected_attributes = {
+        name: correct_merchant.name
+      }
+
+      get '/api/v1/merchants/find_one?name=ring'
+
+      json = JSON.parse(response.body, symbolize_names: true)
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+      expected_attributes.each do |attribute, value|
+        expect(json[:data][:attributes][attribute]).to eq(value)
+      end
+    end
   end
 end
