@@ -7,4 +7,14 @@ class Item < ApplicationRecord
   has_many :invoice_items, dependent: :destroy
   has_many :invoices, through: :invoice_items
   has_many :transactions, through: :invoices
+
+  def self.find_by_args(min_price, max_price, name)
+    min_price = 0 if min_price == nil
+    max_price = Float::MAX if max_price == nil
+    name = "" if name == nil
+
+    where('unit_price <= (?) AND unit_price >= (?) AND LOWER(name) LIKE (?)', "#{max_price.to_f}", "#{min_price.to_f}", "%#{name.downcase}%")
+    #.where('unit_price >= ?', "#{unit_price}")
+    #.where('name LIKE ?', "%#{name}%")
+  end
 end
