@@ -13,8 +13,9 @@ class Item < ApplicationRecord
     max_price = Float::MAX if max_price == nil
     name = "" if name == nil
 
-    where('unit_price <= (?) AND unit_price >= (?) AND LOWER(name) LIKE (?)', "#{max_price.to_f}", "#{min_price.to_f}", "%#{name.downcase}%")
-    #.where('unit_price >= ?', "#{unit_price}")
-    #.where('name LIKE ?', "%#{name}%")
+    where(
+      'unit_price <= (?) AND unit_price >= (?) AND LOWER(name) LIKE (?)',
+     "#{max_price.to_f}","#{min_price.to_f}", "%#{name.downcase}%"
+    )
   end
 end
