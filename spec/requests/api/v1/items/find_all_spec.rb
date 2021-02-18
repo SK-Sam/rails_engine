@@ -18,7 +18,6 @@ RSpec.describe 'Find One', type: :request do
       get '/api/v1/items/find_all?min_price=26'
 
       json = JSON.parse(response.body, symbolize_names: true)
-
       expect(response).to be_successful
       expect(response.status).to eq(200)
       expected_attributes.each do |attribute, value|
