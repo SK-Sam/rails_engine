@@ -35,5 +35,12 @@ RSpec.describe Merchant do
 
       expect(nil_handling.count).to eq(20)
     end
+    it '#find_by_name_alphabetical' do
+      incorrect_merchant = create(:merchant, name: "Turing")
+      correct_merchant = create(:merchant, name: "Ring World")
+
+      expect(Merchant.find_by_name_alphabetical("ring")).to eq(correct_merchant)
+      expect(Merchant.find_by_name_alphabetical("Ring")).to eq(correct_merchant)
+    end
   end
 end
