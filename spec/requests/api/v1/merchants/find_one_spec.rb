@@ -28,7 +28,7 @@ RSpec.describe 'Find One', type: :request do
         name: correct_merchant.name
       }
 
-      get '/api/v1/merchants/find_one?name=ring'
+      get '/api/v1/merchants/find?name=ring'
 
       json = JSON.parse(response.body, symbolize_names: true)
 
