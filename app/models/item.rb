@@ -9,6 +9,7 @@ class Item < ApplicationRecord
   has_many :transactions, through: :invoices
 
   def self.find_by_args(min_price, max_price, name)
+    return [] if min_price == nil && max_price == nil && (name == nil || name == "")
     min_price = 0 if min_price == nil
     max_price = Float::MAX if max_price == nil
     name = "" if name == nil

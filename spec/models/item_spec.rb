@@ -26,7 +26,7 @@ RSpec.describe Item do
       expect(Item.find_by_args(item_price_min_to_find_by, nil, nil)).to eq([item_1, item_2])
       expect(Item.find_by_args(nil, item_price_max_to_find_by, nil)).to eq([item_3])
       expect(Item.find_by_args(item_1.unit_price, item_1.unit_price, item_1.name.upcase)).to eq([item_1])
-      expect(Item.find_by_args(nil, nil, nil)).to eq([item_1, item_2, item_3])
+      expect(Item.find_by_args(nil, nil, nil)).to eq([])
       expect(Item.find_by_args(Float::MAX, Float::MAX, "20")).to eq([])
     end
   end
