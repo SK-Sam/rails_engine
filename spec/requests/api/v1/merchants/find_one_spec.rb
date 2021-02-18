@@ -17,7 +17,7 @@ RSpec.describe 'Find One', type: :request do
       expect(response).to be_successful
       expect(response.status).to eq(200)
       expected_attributes.each do |attribute, value|
-        expect(json[:data][:attributes][:attribute]).to eq(value)
+        expect(json[:data][:attributes][attribute]).to eq(value)
       end
     end
   end
