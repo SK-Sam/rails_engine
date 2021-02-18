@@ -109,6 +109,7 @@ RSpec.describe 'Items', type: :request do
       }
       
       get api_v1_item_merchant_index_path(item.id)
+      
       json = JSON.parse(response.body, symbolize_names: true)
 
       expect(response.status).to eq(200)
