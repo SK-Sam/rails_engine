@@ -30,4 +30,12 @@ class Merchant < ApplicationRecord
     .order("count DESC")
     .limit(qty.to_i)
   end
+
+  def self.merchant_revenue(merchant_id)
+    joins(invoices: [:transactions, :invoice_items])
+    .select("merchants.*, SUM(invoice_items.quantity * invoice_items.unit_price) AS revenue")
+    .where("transactions.result = ? AND invoices.merchant_id = ?", "success", merchant_id)
+    .group("merchants.id")
+    .first
+  end
 end
