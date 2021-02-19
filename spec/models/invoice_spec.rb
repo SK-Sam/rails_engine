@@ -25,7 +25,7 @@ RSpec.describe Invoice do
       invoice_item_3 = create(:invoice_item, invoice: invoice_2, item: item_2, quantity: 1, unit_price: 2)
 
       expected_potential_revenue = 495.00
-
+      require 'pry'; binding.pry
       expect(Invoice.get_unshipped_revenues(2).first.potential_revenue).to eq(expected_potential_revenue)
     end
   end
