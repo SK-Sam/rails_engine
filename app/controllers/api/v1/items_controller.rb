@@ -18,7 +18,11 @@ class Api::V1::ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     @item.update(item_params)
-    render json: ItemSerializer.new(@item)#, status: :update
+    if !Merchant.exists?(@item.merchant_id) 
+      render json: {error: "Bad merchant ID"}, status: 400
+    else
+      render json: ItemSerializer.new(@item)
+    end
   end
 
   def destroy

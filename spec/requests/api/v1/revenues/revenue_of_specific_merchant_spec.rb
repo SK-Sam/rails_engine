@@ -28,5 +28,10 @@ RSpec.describe 'Merchant', type: :request do
       expect(json[:data]).to be_a(Hash)
       expect(json[:data][:attributes][:revenue]).to eq(expected_revenue)
     end
+    it 'can return an error if no merchant exists' do
+      get "/api/v1/revenue/merchants/9999999"
+
+      expect(response.status).to eq(404)
+    end
   end
 end
