@@ -13,6 +13,7 @@ class Api::V1::Revenue::RevenuesController < ApplicationController
   end
 
   def invoices_unshipped
-
+    @invoices = Invoice.get_unshipped_revenues(params[:quantity])
+    render json: UnshippedOrderSerializer.new(@invoices)
   end
 end
