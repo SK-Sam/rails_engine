@@ -34,5 +34,10 @@ RSpec.describe 'Merchant', type: :request do
         expect(json[:data].first[:attributes][attribute]).to eq(value)
       end
     end
+    it 'can return an error if quantity param is missing' do
+      get '/api/v1/revenue/merchants'
+
+      expect(response.status).to eq(400)
+    end
   end
 end

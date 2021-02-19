@@ -9,8 +9,12 @@ class Api::V1::Merchants::SearchController < ApplicationController
   end
 
   def most_items
-    @merchants = Merchant.sold_most_items(params[:quantity])
-    render json: ItemsSoldSerializer.new(@merchants)
+    if params[:quantity] == nil
+      render json: {error: "Quantity is missing"}, status: 400
+    else
+      @merchants = Merchant.sold_most_items(params[:quantity])
+      render json: ItemsSoldSerializer.new(@merchants)
+    end
   end
 end
 
