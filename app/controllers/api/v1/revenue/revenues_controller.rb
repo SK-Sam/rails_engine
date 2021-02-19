@@ -6,4 +6,9 @@ class Api::V1::Revenue::RevenuesController < ApplicationController
     }, status: 400 if @merchants == "Error"
     render json: MerchantNameRevenueSerializer.new(@merchants)
   end
+
+  def merchant_revenue
+    @merchant = Merchant.merchant_revenue(params[:id])
+    render json: MerchantRevenueSerializer.new(@merchant)
+  end
 end
