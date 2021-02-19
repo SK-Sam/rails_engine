@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       namespace :revenue do
         get '/merchants', to: 'revenues#most_revenue'
         get '/merchants/:merchant_id', to: 'revenues#merchant_revenue'
-        get '/unshipped', to: 'revenues#unshipped'
+        get '/unshipped', to: 'revenues#invoices_unshipped'
       end
 
       namespace :merchants do
