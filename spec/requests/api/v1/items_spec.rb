@@ -87,6 +87,19 @@ RSpec.describe 'Items', type: :request do
       expect(updated_item.name).not_to eq(previous_item_name)
       expect(updated_item.name).to eq(updated_name)
     end
+    it 'fails when bad merchant id' do
+      merchant = create(:merchant)
+      item = create(:item, merchant_id: merchant.id)
+      headers = {"CONTENT_TYPE" => "application/json"}
+      previous_item_name = item.name
+      updated_name = "Updated Name" 
+
+      patch api_v1_item_path(item.id), headers: headers, params: JSON.generate(item: {name: updated_name, merchant_id: 9999})
+      updated_item = Item.find(item.id)
+
+      expect(response).not_to be_successful
+      expect(response.status).to eq(400)
+    end
   end
   describe 'destroying an item' do
     it 'succeeds and destroys invoice if it is the only item on invoice' do
