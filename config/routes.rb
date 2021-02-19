@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       namespace :merchants do
         get '/find', to: 'search#find', as: 'find_one'
-        get '/most_revenue', to: 'revenue#most_revenue', as: 'most_revenue'
+        get '/most_revenue', to: 'revenues#most_revenue', as: 'most_revenue'
       end
       namespace :items do
         get '/find_all', to: 'search#find_all', as: 'find_all'
