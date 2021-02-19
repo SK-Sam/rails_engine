@@ -76,11 +76,6 @@ RSpec.describe Merchant do
       invoice_item_1 = create(:invoice_item, invoice: invoice_1, item: item_1, quantity: 99, unit_price: 5)
       invoice_item_2 = create(:invoice_item, invoice: invoice_2, item: item_2, quantity: 100, unit_price: 2)
 
-      expected_attributes = {
-        name: merchant_2.name,
-        quantity: 100
-      }
-
       expect(Merchant.sold_most_items(2).first.name).to eq(merchant_2.name)
       expect(Merchant.sold_most_items(2).first.count).to eq(invoice_item_2.quantity)
     end
