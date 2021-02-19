@@ -35,9 +35,9 @@ RSpec.describe 'Merchant', type: :request do
       end
     end
     it 'can return an error if quantity param is missing' do
-      get '/api/v1/revenue/merchants/most_items'
+      get '/api/v1/merchants/most_items'
 
-      expect(response.status).to eq(404)
+      expect(response.status).to eq(400)
     end
   end
 end
