@@ -17,7 +17,7 @@ RSpec.describe Invoice do
       customer_1 = create(:customer)
       customer_2 = create(:customer)
       invoice_1 = create(:invoice, merchant: merchant_1, customer: customer_1, status: "packaged")
-      invoice_2 = create(:invoice, merchant: merchant_2, customer: customer_2)
+      invoice_2 = create(:invoice, merchant: merchant_2, customer: customer_2, status: "shipped")
       transaction_1 = create(:transaction, invoice: invoice_1, result: "success")
       transaction_2 = create(:transaction, invoice: invoice_2, result: "success")
       invoice_item_1 = create(:invoice_item, invoice: invoice_1, item: item_1, quantity: 99, unit_price: 5)
