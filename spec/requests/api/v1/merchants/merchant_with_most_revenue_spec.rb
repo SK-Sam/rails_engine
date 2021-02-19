@@ -17,7 +17,7 @@ RSpec.describe 'Merchant', type: :request do
       invoice_item_2 = create(:invoice_item, invoice: invoice_2, item: item_2, quantity: 100, unit_price: 2)
 
       expected_attributes = {
-        name: item_1.name,
+        name: merchant_1.name,
         revenue: 500.00
       }
 
