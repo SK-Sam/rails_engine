@@ -24,9 +24,11 @@ RSpec.describe 'Merchant', type: :request do
       get '/api/v1/merchants/most_revenue?quantity=1'
 
       json = JSON.parse(response.body, symbolize_names: true)
-      
+
       expect(response).to be_successful
       expect(response.status).to eq(200)
+      expect(json[:data]).to be_an(Array)
+      expect(json[:data].count).to eq(1)
       expected_attributes.each do |attribute, value|
         expect(json[:data].first[:attributes][attribute]).to eq(value)
       end
