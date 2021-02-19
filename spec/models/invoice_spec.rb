@@ -27,7 +27,6 @@ RSpec.describe Invoice do
       expected_potential_revenue = 495.00
 
       expect(Invoice.get_unshipped_revenues(2).first.revenue).to eq(expected_potential_revenue)
-      expect(Invoice.get_unshipped_revenues(2).count).to eq(1)
     end
   end
 end
