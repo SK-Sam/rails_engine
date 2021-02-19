@@ -22,7 +22,7 @@ RSpec.describe Item do
       item_price_min_to_find_by = 25.00
       item_price_max_to_find_by = 24
 
-      expect(Item.find_by_args(nil, nil, item_name_to_find_by)).to eq([item_1])
+      expect(Item.find_by_args(nil, nil, item_name_to_find_by).first.name).to eq(item_1.name)
       expect(Item.find_by_args(item_price_min_to_find_by, nil, nil)).to eq([item_1, item_2])
       expect(Item.find_by_args(nil, item_price_max_to_find_by, nil)).to eq([item_3])
       expect(Item.find_by_args(item_1.unit_price, item_1.unit_price, item_1.name.upcase)).to eq([item_1])
