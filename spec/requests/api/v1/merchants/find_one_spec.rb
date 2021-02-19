@@ -38,5 +38,10 @@ RSpec.describe 'Find One', type: :request do
         expect(json[:data][:attributes][attribute]).to eq(value)
       end
     end
+    it 'can return an error if no match found' do
+      get '/api/v1/merchants/find?name=NOMATCH'
+
+      expect(response.status).to eq(404)
+    end
   end
 end
