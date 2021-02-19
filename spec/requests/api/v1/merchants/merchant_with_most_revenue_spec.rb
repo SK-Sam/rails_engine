@@ -21,7 +21,8 @@ RSpec.describe 'Merchant', type: :request do
         revenue: 500.00
       }
 
-      get '/api/v1/merchants/most_revenue?quantity=1'
+      #get '/api/v1/merchants/most_revenue?quantity=1'
+      get '/api/v1/revenue/merchants/?quantity=1'
 
       json = JSON.parse(response.body, symbolize_names: true)
 

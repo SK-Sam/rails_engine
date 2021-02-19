@@ -1,4 +1,4 @@
-class Api::V1::Merchants::RevenuesController < ApplicationController
+class Api::V1::Revenue::RevenuesController < ApplicationController
   def most_revenue
     @merchants = Merchant.most_revenue(params[:quantity])
     render json: {
