@@ -15,10 +15,11 @@ RSpec.describe 'Merchant', type: :request do
       transaction_2 = create(:transaction, invoice: invoice_2, result: "success")
       invoice_item_1 = create(:invoice_item, invoice: invoice_1, item: item_1, quantity: 99, unit_price: 5)
       invoice_item_2 = create(:invoice_item, invoice: invoice_2, item: item_2, quantity: 100, unit_price: 2)
+      invoice_item_3 = create(:invoice_item, invoice: invoice_2, item: item_2, quantity: 1, unit_price: 2)
 
       expected_attributes = {
         name: merchant_2.name,
-        quantity: 100
+        count: 101
       }
 
       get '/api/v1/merchants/most_items?quantity=2'
