@@ -12,11 +12,11 @@ class Merchant < ApplicationRecord
   end
 
   def self.most_revenue(qty)
-    return "Error" if qty == nil || qty <= 0
+    return "Error" if qty == nil || qty <= "0"
     joins(invoices: [:transactions, :invoice_items])
     .select("merchants.*, invoice_items.quantity * invoice_items.unit_price AS revenue")
     .where("transactions.result = ?", "success")
     .order("revenue DESC")
-    .limit(qty)
+    .limit(qty.to_i)
   end
 end
